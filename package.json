@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "alarm": "^2.0.0",
-        "moment": "^2.24.0"
+        "moment": "^2.24.0",
+        "sfx": "^0.1.1"
     }
 }

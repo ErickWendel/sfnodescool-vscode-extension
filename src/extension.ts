@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import * as moment from 'moment';
 const alarm = require('alarm');
+var sfx = require("sfx");
 
 const FORMAT_DATE = `M/D/Y H:mm:ss`;
 
@@ -107,7 +108,9 @@ class TaskManager {
     const timeMilliseconds = time.toDate();
 
     alarm(timeMilliseconds, () => {
+      sfx.ping();
       vscode.window.showInformationMessage(`Reminder: ${text}`);
+
     });
   }
 }
