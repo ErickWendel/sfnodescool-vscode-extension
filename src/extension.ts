@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 import * as moment from 'moment';
 const alarm = require('alarm');
-var sfx = require('sfx');
+const sfx = require('sfx');
 
 const FORMAT_DATE = `M/D/Y H:mm:ss`;
 
