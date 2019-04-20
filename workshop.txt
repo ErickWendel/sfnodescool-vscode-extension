@@ -6,3 +6,35 @@
 -> click on icon and show all tasks
 
 icons => https://octicons.github.com/icon/list-unordered/
+
+
+- npm install -g yo generator-code
+- run extension
+- activation event to ["*"]
+- add command to 
+{
+    "command": "extension.createReminder",
+    "title": "Nodeschool: New Reminder",
+    "category": "nodeschool"
+}
+
+- change src/extension.ts
+- event name to extension.createReminder
+- create reminderManager class
+- add prompMessage method
+- make validations
+- add moment - npm install moment @types/moment 
+- add global variable const FORMAT_DATE = `M/D/Y H:mm:ss`;
+- add defaultDate to the promp
+- verify moment date valid
+- create function setTask on reminderManager class
+- add reminder array and push item to it 
+- create function to configure alarm
+- install alarm - npm i alarm 
+- show message on alarm 
+- create the createStatusBar function on reminderManager class
+- call the createStatusBar on init 
+- create the extension.getReminders event 
+- get all messages and show output 
+
+

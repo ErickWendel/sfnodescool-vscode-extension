@@ -1,10 +1,14 @@
-# wlist-nodeschool README
+# wlist-nodeschool
 
-- SFNodeschool demos
+- SFNodeschool demos: "How to create a VSCode extension"
+- Access [our workshop notes](workshop.txt) to see the step by step
 
-Running this your could create reminders and the VSCode will alert you. See the demo below
+## Demo
+
+- Running this your could create reminders and the VSCode will alert you (with text and sound). See the demo below
 
 ![](resources/extension.gif)
 
 ## Author
- - [@erickwendel](https://erickwendel.com/)
+
+- [@erickwendel](https://erickwendel.com/)
