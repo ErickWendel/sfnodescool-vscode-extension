@@ -1,0 +1,16 @@
+-> giphy API
+-> Search bar
+-> Select a text
+-> Search on giphy
+
+https://github.com/johnstew/vscode-gif
+
+
+-> alarm clock
+-> command to insert task name
+-> command to insert time 
+-> add to toolbar showing the time
+-> when the time over, sould ring
+-> click on icon and show all tasks
+
+icons => https://octicons.github.com/icon/list-unordered/
