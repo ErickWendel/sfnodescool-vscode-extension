@@ -16,8 +16,8 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.createTask",
-                "title": "Nodeschool: New task",
+                "command": "extension.createReminder",
+                "title": "Nodeschool: New Reminder",
                 "category": "nodeschool"
             }
         ]

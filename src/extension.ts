@@ -3,32 +3,35 @@
 import * as vscode from 'vscode';
 import * as moment from 'moment';
 const alarm = require('alarm');
-var sfx = require("sfx");
+var sfx = require('sfx');
 
 const FORMAT_DATE = `M/D/Y H:mm:ss`;
 
 export function activate(context: vscode.ExtensionContext) {
-  const taskManager = new TaskManager();
-  taskManager.createStatusBar();
+  const reminderManager = new TaskManager();
+  reminderManager.createStatusBar();
 
-// --------
-  let getTasks = vscode.commands.registerCommand(
-    'extension.getTasks',
+  // --------
+  let getReminders = vscode.commands.registerCommand(
+    'extension.getReminders',
     async () => {
-      const messages = taskManager
+      
+      reminderManager
         .getTask()
-        .map(({ reminderName, date }) => `${reminderName} - ${date.format(FORMAT_DATE)}`)
-        .join('\n');
+        .map(
+          ({ reminderName, date }) =>
+            `${reminderName} - ${date.format(FORMAT_DATE)}`,
+        )
 
-      vscode.window.showInformationMessage(messages);
+        .map(vscode.window.showInformationMessage)
     },
   );
 
-// --------
+  // --------
   let createTask = vscode.commands.registerCommand(
-    'extension.createTask',
+    'extension.createReminder',
     async () => {
-      const reminderName = await taskManager.promptMessage(
+      const reminderName = await reminderManager.promptMessage(
         'Insert your reminder name',
         'My reminder name',
       );
@@ -42,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
         .add(10, 'seconds')
         .format(FORMAT_DATE);
 
-      const date = await taskManager.promptMessage(
+      const date = await reminderManager.promptMessage(
         'Insert the date!',
         FORMAT_DATE,
         defaultDate,
@@ -57,33 +60,31 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
 
-      taskManager.setTask({ date: momentDate, reminderName });
+      reminderManager.setTask({ date: momentDate, reminderName });
     },
   );
 
-  context.subscriptions.push(createTask, getTasks);
+  context.subscriptions.push(createTask, getReminders);
 }
 
 export function deactivate() {}
 
-
 // -----------
 interface Reminder {
-   date: moment.Moment
-  reminderName: string
+  date: moment.Moment;
+  reminderName: string;
 }
 class TaskManager {
-  
-  private _tasks: Reminder[] = [];
+  private _reminders: Reminder[] = [];
   private statusBarText: vscode.StatusBarItem;
 
   setTask(data: Reminder): void {
-    this._tasks.push(data);
+    this._reminders.push(data);
     this.configureAlarm(data.reminderName, data.date);
   }
 
   getTask(): Reminder[] {
-    return this._tasks;
+    return this._reminders;
   }
 
   promptMessage(prompt: string, placeHolder: string, value: string = '') {
@@ -99,7 +100,7 @@ class TaskManager {
       vscode.StatusBarAlignment.Right,
     );
     this.statusBarText.text = icon;
-    this.statusBarText.command = 'extension.getTasks';
+    this.statusBarText.command = 'extension.getReminders';
     this.statusBarText.tooltip = 'Show all reminders';
     this.statusBarText.show();
   }
@@ -110,7 +111,6 @@ class TaskManager {
     alarm(timeMilliseconds, () => {
       sfx.ping();
       vscode.window.showInformationMessage(`Reminder: ${text}`);
-
     });
   }
 }
