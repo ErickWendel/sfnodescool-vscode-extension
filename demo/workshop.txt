@@ -1,12 +1,4 @@
--> alarm clock
--> command to insert task name
--> command to insert time 
--> add to toolbar showing the time
--> when the time over, sould ring
--> click on icon and show all tasks
-
 icons => https://octicons.github.com/icon/list-unordered/
-
 
 - npm install -g yo generator-code
 - run extension
